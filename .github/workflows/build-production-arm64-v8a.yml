@@ -46,7 +46,7 @@ jobs:
       - name: Prepare Keystore
         shell: pwsh
         run: |
-          [IO.File]::WriteAllBytes("$PWD/release.jks", [Convert]::FromBase64String("${{ secrets.ANDROID_KEYSTORE_BASE64 }}"))
+          [IO.File]::WriteAllBytes("$PWD/app/release.jks", [Convert]::FromBase64String("${{ secrets.ANDROID_KEYSTORE_BASE64 }}"))
 
       - name: Generate local.properties
         shell: pwsh
