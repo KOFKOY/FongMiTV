@@ -1,5 +1,5 @@
-# 作用：在 GitHub Actions 中自动构建生产（release）arm64-v8a 架构 APK，并上传产物。
-name: Build Production ARM64-v8a APK
+# 作用：在 GitHub Actions 中自动构建生产（release）mobile-arm64-v8a APK，并上传产物。
+name: Build Production Mobile ARM64-v8a APK
 
 on:
   # 支持手动触发，便于按需发版。
@@ -61,15 +61,15 @@ jobs:
       - name: Grant Execute Permission
         run: chmod +x gradlew
 
-      - name: Build Release APKs (arm64-v8a)
-        run: ./gradlew --no-daemon :app:assembleLeanbackArm64_v8aRelease :app:assembleMobileArm64_v8aRelease
+      - name: Build Release APK (mobile-arm64-v8a)
+        run: ./gradlew --no-daemon :app:assembleMobileArm64_v8aRelease
 
       - name: Upload APK Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: production-arm64-v8a-apk
+          name: production-mobile-arm64-v8a-apk
           if-no-files-found: error
           retention-days: 14
           path: |
-            app/build/outputs/apk/**/arm64_v8a/release/*.apk
-            Release/apk/*.apk
+            app/build/outputs/apk/mobile/arm64_v8a/release/*.apk
+            Release/apk/mobile-arm64_v8a.apk
